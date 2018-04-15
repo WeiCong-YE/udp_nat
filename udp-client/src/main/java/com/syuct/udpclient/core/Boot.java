@@ -32,7 +32,7 @@ public class Boot implements CommandLineRunner {
             head2.setTime(System.currentTimeMillis());
             TransMessage.Message.Builder message2 = TransMessage.Message.newBuilder();
             message2.setHead(head2);
-            message2.setBody("1039075891");
+            message2.setBody("1065302407");
             client.channel.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(message2.build().toByteArray()),new InetSocketAddress(ServerConfig.Server,ServerConfig.port)));
 
         } catch (Exception e) {
