@@ -33,6 +33,5 @@ public class UdpClient {
                     }
                 });
         channel = b.bind(port).sync().channel();
-        channel.closeFuture().await();
     }
 }
