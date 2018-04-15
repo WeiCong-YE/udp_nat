@@ -44,9 +44,19 @@ public class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket>{
                 String body = message.getBody();
                 System.out.println(body);
                 ServerAddress serverAddress = gson.fromJson(body, ServerAddress.class);
-                channelHandlerContext.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer("hello".getBytes()),new InetSocketAddress(serverAddress.getIp(),serverAddress.getPort())));
+                TransMessage.Head.Builder head2 = TransMessage.Head.newBuilder();
+                head2.setStatus(TransMessage.status.REQ);
+                head2.setType(TransMessage.type.USER);
+                head2.setUid(UUID.randomUUID().toString());
+                head2.setTime(System.currentTimeMillis());
+                TransMessage.Message.Builder message2 = TransMessage.Message.newBuilder();
+                message2.setHead(head2);
+                message2.setBody("hello RUOK");
+                channelHandlerContext.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(message2.build().toByteArray()),new InetSocketAddress(serverAddress.getIp(),serverAddress.getPort())));
                 break;
             case USER:
+                String msg = message.getBody();
+                System.out.println("rece: " +msg);
                 break;
             case SYSTEM:
                 break;
