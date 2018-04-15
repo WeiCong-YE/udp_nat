@@ -19,6 +19,7 @@ public class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket>{
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
         InetSocketAddress sender = datagramPacket.sender();
+        System.out.println("shou dao xiaoxi");
         Gson gson = new Gson();
         ByteBuf content = datagramPacket.content();
         TransMessage.Message message = TransMessage.Message.parseFrom(content.nioBuffer());
