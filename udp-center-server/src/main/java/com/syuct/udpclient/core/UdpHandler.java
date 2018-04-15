@@ -32,6 +32,7 @@ public class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket>{
                 break;
             case ROUTUSER:
                 String userId = message.getBody();
+                System.out.println("revice : rout : "+userId);
                 ServerAddress serverAddress = UserContainer.get(userId);
                 TransMessage.Head.Builder head2 = TransMessage.Head.newBuilder();
                 head2.setStatus(TransMessage.status.OK);
