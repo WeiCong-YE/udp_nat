@@ -27,6 +27,7 @@ public class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket>{
             case HANDSHAKE:
                 String body = message.getBody();
                 System.out.println(body);
+                System.out.println(sender.getHostName()+"\t"+sender.getPort());
                 UserContainer.put(body,new ServerAddress(sender.getHostName(),sender.getPort(),body));
                 break;
             case ROUTUSER:
