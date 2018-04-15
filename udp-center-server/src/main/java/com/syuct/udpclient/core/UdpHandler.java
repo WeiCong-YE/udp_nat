@@ -50,6 +50,7 @@ public class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket>{
             case SYSTEM:
                 break;
                 default:
+                    System.out.println("unknow message");
         }
     }
 
